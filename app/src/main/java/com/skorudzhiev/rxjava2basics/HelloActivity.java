@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,6 +18,12 @@ public class HelloActivity extends AppCompatActivity {
     private static final String TAG = "TAG";
     TextView textView;
     Button observe;
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,14 +38,13 @@ public class HelloActivity extends AppCompatActivity {
         observe = findViewById(R.id.observe_button);
         textView = findViewById(R.id.text_view);
 
-        observe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                run();
-            }
-        });
+        // Replacing the OnClick declaration with Lambda statement
+        observe.setOnClickListener(view -> run());
+
 
     }
+
+
 
     private void run() {
         Observable<String> observable = Observable.just("Hello World!\n");
@@ -73,6 +77,9 @@ public class HelloActivity extends AppCompatActivity {
 
 
     }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
