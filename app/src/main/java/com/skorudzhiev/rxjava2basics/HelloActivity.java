@@ -12,6 +12,7 @@ import android.widget.TextView;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 
 public class HelloActivity extends AppCompatActivity {
 
@@ -47,7 +48,11 @@ public class HelloActivity extends AppCompatActivity {
 
 
     private void run() {
-        Observable<String> observable = Observable.just("Hello World!\n");
+        Observable<String> observable = Observable.just("Hello World!\n")
+                // map() operator is used to transform one emitted item into another
+                .map(s -> s + " -Stoyan\n")
+                // Transforming the latest String into hashcode and returning result
+                .map(s -> s + s.hashCode());
 
         Observer<String> observer = new Observer<String>() {
             @Override
