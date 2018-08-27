@@ -5,11 +5,32 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/subj_button"
+        android:id="@+id/publish_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/run" />
+        android:text="@string/publish_subject" />
+
+    <Button
+        android:id="@+id/replay_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/replay_subject" />
+
+    <Button
+        android:id="@+id/behavior_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/behavior_subject" />
+
+    <Button
+        android:id="@+id/async_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/async_subject" />
 
     <ScrollView
         android:layout_width="wrap_content"
