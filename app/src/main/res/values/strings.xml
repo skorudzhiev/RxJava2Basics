@@ -3,4 +3,5 @@
     <string name="hello_intent">Hello World!\n</string>
     <string name="run">run</string>
     <string name="rx_binding">Rx Binding</string>
+    <string name="subjects">Subjects</string>
 </resources>

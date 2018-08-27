@@ -26,6 +26,9 @@
         <activity android:name=".RxBindingActivity"
             android:parentActivityName="com.skorudzhiev.rxjava2basics.MainActivity">
         </activity>
+        <activity android:name=".SubjectsActivity"
+            android:parentActivityName="com.skorudzhiev.rxjava2basics.MainActivity">
+        </activity>
     </application>
 
 </manifest>

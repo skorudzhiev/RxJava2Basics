@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView text;
-    Button buttonHel, bindButton;
+    Button buttonHel, bindButton, subjButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonHel.setOnClickListener(this);
         bindButton = findViewById(R.id.bind_button);
         bindButton.setOnClickListener(this);
+        subjButton = findViewById(R.id.subject_button);
+        subjButton.setOnClickListener(this);
     }
 
     @Override
@@ -35,6 +37,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bind_button:
                 Intent bindIntent = new Intent(this, RxBindingActivity.class);
                 startActivity(bindIntent);
+                break;
+            case R.id.subject_button:
+                Intent subjIntent = new Intent(this, SubjectsActivity.class);
+                startActivity(subjIntent);
                 break;
         }
 

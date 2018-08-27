@@ -52,7 +52,8 @@ public class HelloActivity extends AppCompatActivity {
                 // map() operator is used to transform one emitted item into another
                 .map(s -> s + " -Stoyan\n")
                 // Transforming the latest String into hashcode and returning result
-                .map(s -> s + s.hashCode());
+                .map(s -> s + s.hashCode())
+                .cache();
 
         Observer<String> observer = new Observer<String>() {
             @Override

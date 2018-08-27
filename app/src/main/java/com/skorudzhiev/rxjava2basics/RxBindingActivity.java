@@ -15,6 +15,10 @@ import com.jakewharton.rxbinding2.widget.RxTextView;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 public class RxBindingActivity extends AppCompatActivity {
 
     Button button;
@@ -35,10 +39,6 @@ public class RxBindingActivity extends AppCompatActivity {
         editText = findViewById(R.id.edit_text);
 
         RxView.clicks(button)
-                // .debounce() operator of ReactiveX
-                // this button should react to an OnClick event only if
-                // there’s been at least a 500 millisecond gap since the previous click event
-                .debounce(500, TimeUnit.MILLISECONDS)
                 .subscribe(aVoid ->
                         Toast.makeText(RxBindingActivity.this,
                                 "RxView.clicks", Toast.LENGTH_SHORT).show());
