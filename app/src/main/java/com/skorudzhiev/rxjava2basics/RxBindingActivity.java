@@ -1,5 +1,6 @@
 package com.skorudzhiev.rxjava2basics;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -25,6 +26,7 @@ public class RxBindingActivity extends AppCompatActivity {
     TextView textView;
     EditText editText;
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

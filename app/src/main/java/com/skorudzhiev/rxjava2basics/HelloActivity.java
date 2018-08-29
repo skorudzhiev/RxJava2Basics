@@ -1,11 +1,16 @@
 package com.skorudzhiev.rxjava2basics;
 
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,12 +24,7 @@ public class HelloActivity extends AppCompatActivity {
     private static final String TAG = "TAG";
     TextView textView;
     Button observe;
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
+    private HelloViewModel viewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,17 +35,19 @@ public class HelloActivity extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-
         observe = findViewById(R.id.observe_button);
         textView = findViewById(R.id.text_view);
+
+        // Initialization of the viewModel
+        viewModel = ViewModelProviders.of(this).get(HelloViewModel.class);
 
         // Replacing the OnClick declaration with Lambda statement
         observe.setOnClickListener(view -> run());
 
-
+        // Invoking displayText() when the activity is recreated
+        // or new Activity is created
+        displayText(viewModel.getHelloWorld());
     }
-
-
 
     private void run() {
         Observable<String> observable = Observable.just("Hello World!\n")
@@ -63,8 +65,16 @@ public class HelloActivity extends AppCompatActivity {
 
             @Override
             public void onNext(String value) {
-                textView.append(value);
-
+                // Setting the emitting by the observable value with a
+                // custom if, else statement for cases, where the viewModel
+                // is both empty or not which allows to increment the TextView
+                if (viewModel.getHelloWorld() != null) {
+                    viewModel.setHelloWorld(viewModel.getHelloWorld() + value);
+                    displayText(viewModel.getHelloWorld());
+                } else {
+                    viewModel.setHelloWorld(value);
+                    displayText(viewModel.getHelloWorld());
+                }
             }
 
             @Override
@@ -82,6 +92,11 @@ public class HelloActivity extends AppCompatActivity {
         observable.subscribe(observer);
 
 
+    }
+
+    // Custom method used to append the observable stream
+    private void displayText(String text) {
+        textView.setText(text);
     }
 
 
